@@ -119,3 +119,23 @@ ylabel("Variance")
 xlabel("Iteration:")
 saveas(f9, "Q3AggVariance.jpg")
 
+%% Question 4 w/ Two Attributes
+
+Question4aData = csvread("./Part4Data2.csv")
+Q4a.i = Question2Data(:,1)
+Q4a.test_e_global = Question2Data(:,2)
+Q4a.train_e_global = Question2Data(:,3)
+
+f13 = figure(13)
+plot(Q4a.test_e_global)
+title("Combined/Boosted Test Error - 2 Attributes")
+ylabel("Error")
+xlabel("Iteration")
+saveas(f13, "Q4aGlobalTestErr.jpg")
+
+f14 = figure(14)
+plot(Q4a.train_e_global)
+title("Combined/Boosted Train Error - 2 Attributes")
+ylabel("Error")
+xlabel("Iteration")
+saveas(f14, "Q4aGlobalTrainErr.jpg")

@@ -36,7 +36,7 @@ if __name__ == '__main__':
         bank_table_train = dt.trans_numer_to_bin(bank_table_train, i)
         bank_table_test = dt.trans_numer_to_bin(bank_table_test, i)
 
-    ######################## BEGIN QUESTION ONE ##################################
+    ######################## BEGIN BOOSTING ##################################
 
     # # Add column for weights. Initialize all weights to one.
     # weights = np.ones((bank_table_test.shape[0], 1), dtype=np.float32)
@@ -114,15 +114,25 @@ if __name__ == '__main__':
     #
     # file1.close()
 
-    ######################## BEGIN QUESTION TWO ##################################
+    ######################## BEGIN BAGGING ##################################
     # I put all of this in one function because I decided to be more organized now
 
-    # Part A
-    # bag.perform_bagging(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 500, 500, True, True, "Part2Data.txt")
-
     # Part B
-    bag.multiple_bagged_predictors(type, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 250, 1000, 500, 100, "Part3Data.txt")
+    # bag.perform_bagging(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 500, 500, False, True, "Part2Data.txt")
 
     # Part C
-    bag.perform_random_forests(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 2000, 500,
-                        True, True, "Part2Data.txt", 2)
+    # bag.multiple_bagged_predictors(type, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 250, 1000, 500, 100, "Part3Data.txt")
+
+    # Part D - Size 2
+    bag.perform_random_forests(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 2000, 1500,
+                        False, True, "Part4Data2.txt", 2)
+
+    # Part D - Size 4
+    bag.perform_random_forests(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 2000,
+                               1500,
+                               False, True, "Part4Data4.txt", 4)
+
+    # Part D - Size 6
+    bag.perform_random_forests(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 2000,
+                               1500,
+                               False, True, "Part4Data6.txt", 6)

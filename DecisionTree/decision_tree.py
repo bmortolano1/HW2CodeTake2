@@ -184,7 +184,8 @@ def id3_rand_forest(type, table, max_tree_depth, depth, attributes, attribute_va
 
     # Create root node
     j = find_best_tree_split(type, table[:, rand_attribute_indices], weights)
-    values = attribute_vals[rand_attribute_indices[j]]
+    j = rand_attribute_indices[j]
+    values = attribute_vals[j]
 
     for val in values:
         subtable = table[table[:, j] == val]
