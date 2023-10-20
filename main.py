@@ -117,5 +117,12 @@ if __name__ == '__main__':
     ######################## BEGIN QUESTION TWO ##################################
     # I put all of this in one function because I decided to be more organized now
 
+    # Part A
     # bag.perform_bagging(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 500, 500, True, True, "Part2Data.txt")
+
+    # Part B
     bag.multiple_bagged_predictors(type, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 250, 1000, 500, 100, "Part3Data.txt")
+
+    # Part C
+    bag.perform_random_forests(3, bank_table_test, bank_table_train, 100, bank_attributes, bank_attribute_values, 2000, 500,
+                        True, True, "Part2Data.txt", 2)

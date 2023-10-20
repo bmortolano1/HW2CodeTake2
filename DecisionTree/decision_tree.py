@@ -164,6 +164,35 @@ def id3(type, table, max_tree_depth, depth, attributes, attribute_vals, mcv, wei
 
     return tree
 
+def id3_rand_forest(type, table, max_tree_depth, depth, attributes, attribute_vals, mcv, weights, num_attributes):
+
+    # Check if leaf node
+    y = table[:, -1]
+
+    if np.size(np.unique(y)) == 0:
+        return {mcv} # Return most common value of whole table
+
+    if np.size(np.unique(y)) == 1:
+        return {y[0]} # Return only remaining value
+
+    if depth == max_tree_depth:
+        return {most_common_value(y, weights)} # Return most common value remaining
+
+    tree = {}
+
+    rand_attribute_indices = [np.random.randint(0, np.size(attributes))]
+
+    # Create root node
+    j = find_best_tree_split(type, table[:, rand_attribute_indices], weights)
+    values = attribute_vals[rand_attribute_indices[j]]
+
+    for val in values:
+        subtable = table[table[:, j] == val]
+        subweights = weights[table[:, j] == val]
+        tree[attributes[j] + ':' + val] = id3(type, subtable, max_tree_depth, depth+1, attributes, attribute_vals, mcv, subweights)
+
+    return tree
+
 def predict_value(tree, attributes, test_values):
     test_cond = [attributes[i] + ':' + test_values[i] for i in range(np.size(test_values))]
 

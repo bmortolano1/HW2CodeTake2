@@ -145,3 +145,50 @@ def multiple_bagged_predictors(type, table_test, table_train, max_tree_depth, at
         file1.write(str(line) + "\n")
 
         print(i)
+
+def bag_single_tree_rand_forest(type, table, max_tree_depth, depth, attributes, attribute_vals, sample_size, num_att):
+    subsample = randomly_sample(table, sample_size)
+    weights = np.ones(np.size(subsample, 0))
+    mcv = dt.most_common_value(subsample[:, -1], weights)
+    tree = dt.id3_rand_forest(type, subsample, max_tree_depth, depth, attributes, attribute_vals, mcv, weights, num_att)
+    return tree
+def perform_random_forests(type, table_test, table_train, max_tree_depth, attributes, attribute_vals, sample_size, num_trees, plot, write, fileName, num_att):
+    trees = []
+
+    global_test_errors = []
+    global_train_errors = []
+
+    if write:
+        file1 = open(fileName, "w")
+
+    for i in range(num_trees):
+        print(i)
+
+        trees.append(bag_single_tree_rand_forest(type, table_train, max_tree_depth,0, attributes, attribute_vals, sample_size, num_att))
+
+        if write or plot:
+            global_test_error = combine(trees, attributes, table_test)
+            global_train_error = combine(trees, attributes, table_train)
+
+        if write:
+            global_test_errors.append(global_test_error)
+            global_train_errors.append(global_train_error)
+
+            line = [i, global_test_error, global_train_error]
+
+            file1.write(str(line) + "\n")
+
+        if plot and i%10 == 1:
+            plt.figure(1)
+            plt.plot(global_test_errors)
+            plt.title("Global Test Errors")
+
+            plt.figure(2)
+            plt.plot(global_train_errors)
+            plt.title("Global Train Errors")
+
+
+    if write:
+        file1.close()
+
+    return trees

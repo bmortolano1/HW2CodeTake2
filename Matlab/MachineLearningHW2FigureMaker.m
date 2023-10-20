@@ -73,3 +73,49 @@ ylabel("Error")
 xlabel("Iteration")
 saveas(f8, "Q2GlobalTrainErr.jpg")
 
+%% Question 3
+
+Question3Data = csvread("./Part3Data.csv")
+
+Q3.i = Question3Data(:,1)
+Q3.single_bias = Question3Data(:,2);
+Q3.single_var = Question3Data(:,3);
+Q3.agg_bias = Question3Data(:,4);
+Q3.agg_var = Question3Data(:,5);
+
+f12 = figure(12)
+plot(Q3.single_bias)
+hold on
+yline(mean(Q3.single_bias))
+title("Single Tree Bias")
+ylabel("Bias")
+xlabel("Iteration")
+saveas(f12, "Q3SingleBias.jpg")
+
+f9 = figure(9)
+plot(Q3.single_var)
+hold on
+yline(mean(Q3.single_var))
+title("Single Tree Variance")
+ylabel("Variance")
+xlabel("Iteration")
+saveas(f9, "Q3SingleVariance.jpg")
+
+f10 = figure(10)
+plot(Q3.agg_bias)
+hold on
+yline(mean(Q3.agg_bias))
+title("Aggregate Predictor Bias")
+ylabel("Bias")
+xlabel("Iteration")
+saveas(f10, "Q3AggBias.jpg")
+
+f11 = figure(11)
+plot(Q3.agg_var)
+hold on
+yline(mean(Q3.agg_var))
+title("Aggregate Predictor Variance")
+ylabel("Variance")
+xlabel("Iteration:")
+saveas(f9, "Q3AggVariance.jpg")
+
