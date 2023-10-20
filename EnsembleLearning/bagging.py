@@ -120,12 +120,17 @@ def multiple_bagged_predictors(type, table_test, table_train, max_tree_depth, at
                 y = 0
 
             result = dt.predict_value(single_tree, attributes, x)
-            result_aggregate = combine(predictor, attributes, x)
+            result_aggregate = combine(predictor, attributes, [row])
 
             if result == "yes":
                 result = 1
             elif result == "no":
                 result = 0
+
+            if result_aggregate == "yes":
+                result_aggregate = 1
+            elif result_aggregate == "no":
+                result_aggregate = 0
 
             results_single.append(result)
             results_aggregate.append(result_aggregate)

@@ -1,0 +1,45 @@
+Question1Data = csvread("./Part1DataTake2.csv");
+
+Q1.i = Question1Data(:,1)
+Q1.test_e_weighted = Question1Data(:,2)
+Q1.train_e_weighted = Question1Data(:,3)
+Q1.test_e_unweighted = Question1Data(:,4)
+Q1.train_e_weighted = Question1Data(:,5)
+Q1.test_e_global = Question1Data(:,6)
+Q1.train_e_global = Question1Data(:,7)
+
+figure(1)
+plot(Q1.test_e_weighted)
+title("Weighted Test Error")
+ylabel("Error")
+xlabel("Iteration")
+
+figure(1)
+plot(Q1.train_e_weighted)
+title("Weighted Train Error")
+ylabel("Error")
+xlabel("Iteration")
+
+figure(1)
+plot(Q1.test_e_unweighted)
+title("Unweighted Test Error")
+ylabel("Error")
+xlabel("Iteration")
+
+figure(1)
+plot(Q1.train_e_unweighted)
+title("Unweighted Test Error")
+ylabel("Error")
+xlabel("Iteration")
+
+figure(1)
+plot(Q1.test_e_global)
+title("Combined/Boosted Test Error")
+ylabel("Error")
+xlabel("Iteration")
+
+figure(1)
+plot(Q1.train_e_global)
+title("Combined/Boosted Test Error")
+ylabel("Error")
+xlabel("Iteration")
