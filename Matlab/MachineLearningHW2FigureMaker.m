@@ -117,14 +117,14 @@ yline(mean(Q3.agg_var))
 title("Aggregate Predictor Variance")
 ylabel("Variance")
 xlabel("Iteration:")
-saveas(f9, "Q3AggVariance.jpg")
+saveas(f11, "Q3AggVariance.jpg")
 
 %% Question 4 w/ Two Attributes
 
-Question4aData = csvread("./Part4Data2.csv")
-Q4a.i = Question2Data(:,1)
-Q4a.test_e_global = Question2Data(:,2)
-Q4a.train_e_global = Question2Data(:,3)
+Question4aData = csvread("./Part4Data2-2.csv")
+Q4a.i = Question4aData(:,1)
+Q4a.test_e_global = Question4aData(:,2)
+Q4a.train_e_global = Question4aData(:,3)
 
 f13 = figure(13)
 plot(Q4a.test_e_global)
@@ -139,3 +139,45 @@ title("Combined/Boosted Train Error - 2 Attributes")
 ylabel("Error")
 xlabel("Iteration")
 saveas(f14, "Q4aGlobalTrainErr.jpg")
+
+%% Question 4 w/ Four Attributes
+
+Question4bData = csvread("./Part4Data4-2.csv")
+Q4b.i = Question4bData(:,1)
+Q4b.test_e_global = Question4bData(:,2)
+Q4b.train_e_global = Question4bData(:,3)
+
+f15 = figure(15)
+plot(Q4b.test_e_global)
+title("Combined/Boosted Test Error - 4 Attributes")
+ylabel("Error")
+xlabel("Iteration")
+saveas(f15, "Q4bGlobalTestErr.jpg")
+
+f16 = figure(16)
+plot(Q4b.train_e_global)
+title("Combined/Boosted Train Error - 4 Attributes")
+ylabel("Error")
+xlabel("Iteration")
+saveas(f16, "Q4bGlobalTrainErr.jpg")
+
+%% Question 4 w/ Four Attributes
+
+Question4cData = csvread("./Part4Data6-2.csv")
+Q4c.i = Question4cData(:,1)
+Q4c.test_e_global = Question4cData(:,2)
+Q4c.train_e_global = Question4cData(:,3)
+
+f17 = figure(17)
+plot(Q4c.test_e_global)
+title("Combined/Boosted Test Error - 6 Attributes")
+ylabel("Error")
+xlabel("Iteration")
+saveas(f17, "Q4cGlobalTestErr.jpg")
+
+f18 = figure(18)
+plot(Q4c.train_e_global)
+title("Combined/Boosted Train Error - 6 Attributes")
+ylabel("Error")
+xlabel("Iteration")
+saveas(f18, "Q4cGlobalTrainErr.jpg")
